@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 // jangan lupa masukin models nya
-use App\Models\Pemasukan;
+use App\Models\Pengeluaran;
 use Illuminate\Http\Request;
 
-class PemasukanController extends Controller
+class PengeluaranController extends Controller
 {
 
     public function __construct()
@@ -20,8 +20,8 @@ class PemasukanController extends Controller
     public function index()
     {
         // menampilkan data
-        $data = Pemasukan::all();
-        return view('pemasukan.index', compact('data'));
+        $data = Pengeluaran::all();
+        return view('pengeluaran.index', compact('data'));
     }
 
     /**
@@ -29,7 +29,7 @@ class PemasukanController extends Controller
      */
     public function create()
     {
-        return view('pemasukan.create');
+        return view('pengeluaran.create');
     }
 
     /**
@@ -38,18 +38,18 @@ class PemasukanController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        if($request->hasFile('bukti_transaksi'))
+        if($request->hasFile('bukti_transfer'))
         {
-            $path_simpan='public/images/transfer';
-            $gambar = $request->file('bukti_transaksi');
+            $path_simpan='public/images/keluar';
+            $gambar = $request->file('bukti_transfer');
             $nama = $gambar->getClientOriginalName();
-            $path = $request->file('bukti_transaksi')->storeAs($path_simpan, $nama);
-            $input['bukti_transaksi'] = $nama;
+            $path = $request->file('bukti_transfer')->storeAs($path_simpan, $nama);
+            $input['bukti_transfer'] = $nama;
         }
 
         // masukkan dari model
-        Pemasukan::create($input);
-        return redirect()->route('pemasukan.index');
+        Pengeluaran::create($input);
+        return redirect()->route('pengeluaran.index');
     }
 
     /**
@@ -57,9 +57,8 @@ class PemasukanController extends Controller
      */
     public function show($id)
     {
-        $data = Pemasukan::find($id);
-        return view('pemasukan.detail', compact('data'));
-
+        $data = Pengeluaran::find($id);
+        return view('pengeluaran.detail', compact('data'));
     }
 
     /**
@@ -67,8 +66,8 @@ class PemasukanController extends Controller
      */
     public function edit($id)
     {
-        $data = Pemasukan::find($id);
-        return view('pemasukan.edit', compact('data'));
+        $data = Pengeluaran::find($id);
+        return view('pengeluaran.edit', compact('data'));
     }
 
     /**
@@ -77,17 +76,17 @@ class PemasukanController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
-        $data = Pemasukan::find($id);
-        if($request->hasFile('bukti_transaksi'))
+        $data = Pengeluaran::find($id);
+        if($request->hasFile('bukti_transfer'))
         {
-            $path_simpan='public/images/transfer';
-            $gambar = $request->file('bukti_transaksi');
+            $path_simpan='public/images/keluar';
+            $gambar = $request->file('bukti_transfer');
             $nama = $gambar->getClientOriginalName();
-            $path = $request->file('bukti_transaksi')->storeAs($path_simpan, $nama);
-            $input['bukti_transaksi'] = $nama;
+            $path = $request->file('bukti_transfer')->storeAs($path_simpan, $nama);
+            $input['bukti_transfer'] = $nama;
         }
         $data->update($input);
-        return redirect()->route('pemasukan.index');
+        return redirect()->route('pengeluaran.index');
     }
 
     /**
@@ -95,8 +94,8 @@ class PemasukanController extends Controller
      */
     public function destroy($id)
     {
-        $data = Pemasukan::find($id);
+        $data = Pengeluaran::find($id);
         $data->delete();
-        return redirect()->route('pemasukan.index');
+        return redirect()->route('pengeluaran.index');//
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 
 // import controller
 use App\Http\Controllers\PemasukanController;
+use App\Http\Controllers\PengeluaranController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -21,3 +22,4 @@ Route::get('home_user', function(){
 
 
 Route::resource('pemasukan', PemasukanController::class);
+Route::resource('pengeluaran', PengeluaranController::class);

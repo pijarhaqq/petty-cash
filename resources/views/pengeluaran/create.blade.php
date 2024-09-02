@@ -5,29 +5,33 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Input Data Pemasukan</div>
+                <div class="card-header">Input Data Pengeluaran</div>
 
 
                 <!-- form harus pake csrf -->
-                <form action="{{route('pemasukan.store')}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('pengeluaran.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <!-- name isi sesuai nama di kolom di database -->
                     <div class="card-body">
                         <div class="form-group p-3">
-                            <label>Sumber Dana / Pemasukan</label>
-                            <input type="text" name="sumber_pemasukan" required class="form-control">
+                            <label>Pemohon</label>
+                            <input type="text" name="pemohon" required class="form-control">
                         </div>
                         <div class="form-group p-3">
-                            <label>Tanggal Masuk</label>
-                            <input type="date" name="tgl_masuk" required class="form-control">
+                            <label>Kebutuhan</label>
+                            <input type="text" name="kebutuhan" required class="form-control">
+                        </div>
+                        <div class="form-group p-3">
+                            <label>Tanggal Pengeluaran</label>
+                            <input type="date" name="tanggal_pengeluaran" required class="form-control">
                         </div>
                         <div class="form-group p-3">
                             <label>Nominal (IDR)</label>
                             <input type="number" name="nominal" required class="form-control">
                         </div>
                         <div class="form-group p-3">
-                            <label>Bukti Transaksi</label>
-                            <input type="file" name="bukti_transaksi" required class="form-control">
+                            <label>Bukti Transfer</label>
+                            <input type="file" name="bukti_transfer" required class="form-control">
                         </div>
                         <div class="form-group p-3">
                             <label>Keterangan</label>
@@ -35,8 +39,8 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-success">Tambah Data</button>                        
-                        <a href="{{route('pemasukan.index')}}" class="btn btn-danger m-2">Batal</a>
+                        <button type="submit" class="btn btn-success">Tambah Data</button>
+                        <a href="{{route('pengeluaran.index')}}" class="btn btn-danger m-2">Batal</a>
                     </div>
                 </form>
 
